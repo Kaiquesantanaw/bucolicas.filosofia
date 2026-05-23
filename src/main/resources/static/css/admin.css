@@ -1,0 +1,291 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+    --bg:      #0d0d0d;
+    --surf:    #161616;
+    --borda:   #2a2a2a;
+    --texto:   #e5e5e5;
+    --sub:     #888;
+    --ouro:    #c9a84c;
+    --ouro2:   #e6c97a;
+    --perigo:  #7a2020;
+    --perigo2: #c05050;
+    --raio:    6px;
+}
+
+body {
+    background: var(--bg);
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    min-height: 100vh;
+}
+
+a { color: var(--ouro); text-decoration: none; }
+a:hover { color: var(--ouro2); }
+
+/* ── Login ─────────────────────────────── */
+.login-body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background: var(--bg);
+}
+
+.login-box {
+    background: var(--surf);
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+.login-logo {
+    font-size: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: var(--ouro);
+}
+
+.login-box h1 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+}
+
+.login-sub {
+    color: var(--sub);
+    font-size: 0.85rem;
+    margin-bottom: 1.75rem;
+}
+
+.login-erro {
+    background: #3a1010;
+    border: 1px solid var(--perigo);
+    color: var(--perigo2);
+    border-radius: var(--raio);
+    padding: 0.65rem 1rem;
+    margin-bottom: 1.25rem;
+    font-size: 0.88rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 1.1rem;
+    text-align: left;
+}
+
+.form-group label {
+    font-size: 0.8rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--sub);
+}
+
+.form-group input,
+.form-group textarea {
+    background: var(--bg);
+    border: 1px solid var(--borda);
+    border-radius: var(--raio);
+    color: var(--texto);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.95rem;
+    padding: 0.7rem 0.9rem;
+    transition: border-color 0.2s;
+    resize: vertical;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--ouro);
+}
+
+.btn-entrar {
+    width: 100%;
+    background: var(--ouro);
+    color: #0d0d0d;
+    border: none;
+    border-radius: var(--raio);
+    padding: 0.8rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 0.25rem;
+}
+
+.btn-entrar:hover { background: var(--ouro2); }
+
+.btn-voltar-site {
+    display: inline-block;
+    margin-top: 1.25rem;
+    font-size: 0.85rem;
+    color: var(--sub);
+}
+
+.btn-voltar-site:hover { color: var(--texto); }
+
+/* ── Navbar admin ──────────────────────── */
+.admin-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+    background: var(--surf);
+    border-bottom: 1px solid var(--borda);
+    position: sticky;
+    top: 0;
+    z-index: 50;
+}
+
+.admin-brand {
+    font-weight: 600;
+    color: var(--ouro);
+    font-size: 1rem;
+}
+
+.admin-nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    color: var(--sub);
+    font-size: 0.88rem;
+}
+
+.btn-logout {
+    background: none;
+    border: 1px solid var(--borda);
+    color: var(--sub);
+    padding: 0.35rem 0.85rem;
+    border-radius: var(--raio);
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: border-color 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.btn-logout:hover { border-color: var(--ouro); color: var(--ouro); }
+
+/* ── Main ──────────────────────────────── */
+.admin-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem;
+}
+
+.admin-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--borda);
+}
+
+.admin-header h1 {
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.btn-novo-admin {
+    background: var(--ouro);
+    color: #0d0d0d;
+    padding: 0.55rem 1.2rem;
+    border-radius: var(--raio);
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+}
+
+.btn-novo-admin:hover { background: var(--ouro2); color: #0d0d0d; }
+
+/* ── Tabela ────────────────────────────── */
+.admin-table-wrap { overflow-x: auto; }
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.admin-table th {
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background: var(--surf);
+    border-bottom: 1px solid var(--borda);
+    color: var(--sub);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+}
+
+.admin-table td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--borda);
+    vertical-align: middle;
+}
+
+.admin-table tr:hover td { background: var(--surf); }
+
+.td-acoes {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.btn-editar-admin {
+    border: 1px solid var(--borda);
+    color: var(--sub);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--raio);
+    font-size: 0.82rem;
+    transition: border-color 0.2s, color 0.2s;
+}
+
+.btn-editar-admin:hover { border-color: var(--ouro); color: var(--ouro); }
+
+.btn-del-admin {
+    background: none;
+    border: 1px solid var(--perigo);
+    color: var(--perigo2);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--raio);
+    cursor: pointer;
+    font-size: 0.82rem;
+    transition: background 0.2s;
+}
+
+.btn-del-admin:hover { background: var(--perigo); color: #fff; }
+
+/* ── Formulário admin ──────────────────── */
+.admin-form {
+    max-width: 800px;
+}
+
+.admin-form .form-group { margin-bottom: 1.5rem; }
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    margin-top: 0.5rem;
+}
+
+.form-actions .btn-entrar { width: auto; padding: 0.75rem 2rem; }
+
+/* ── Empty ─────────────────────────────── */
+.admin-empty {
+    text-align: center;
+    padding: 4rem;
+    color: var(--sub);
+}
+
+.admin-empty p { margin-bottom: 1.25rem; font-style: italic; }

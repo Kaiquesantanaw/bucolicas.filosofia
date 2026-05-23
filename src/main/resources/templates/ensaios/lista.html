@@ -29,17 +29,11 @@
                     <p class="card-preview" th:text="${#strings.abbreviate(ensaio.conteudo, 200)}">Prévia...</p>
                     <div class="card-actions">
                         <a th:href="@{/ensaios/{id}(id=${ensaio.id})}" class="btn-ler">Ler →</a>
-                        <a th:href="@{/ensaios/{id}/editar(id=${ensaio.id})}" class="btn-editar">Editar</a>
-                        <form th:action="@{/ensaios/{id}/deletar(id=${ensaio.id})}" method="post"
-                              onsubmit="return confirm('Confirmar exclusão?')">
-                            <button type="submit" class="btn-deletar">Excluir</button>
-                        </form>
                     </div>
                 </article>
             </div>
             <div th:if="${#lists.isEmpty(ensaios)}" class="empty-state">
-                <p>Nenhum ensaio cadastrado.</p>
-                <a th:href="@{/ensaios/novo}" class="btn-novo">Criar ensaio</a>
+                <p>Nenhum ensaio publicado ainda.</p>
             </div>
         </div>
     </section>

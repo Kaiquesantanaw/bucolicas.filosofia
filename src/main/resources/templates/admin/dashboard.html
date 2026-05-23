@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard — Admin</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+
+<nav class="admin-nav">
+    <span class="admin-brand">⚑ Admin — Bucólicas Filosóficas</span>
+    <div class="admin-nav-right">
+        <span sec:authentication="name">admin</span>
+        <form th:action="@{/admin/logout}" method="post" style="display:inline">
+            <button type="submit" class="btn-logout">Sair</button>
+        </form>
+    </div>
+</nav>
+
+<main class="admin-main">
+    <div class="admin-header">
+        <h1>Ensaios</h1>
+        <a th:href="@{/admin/ensaios/novo}" class="btn-novo-admin">+ Novo Ensaio</a>
+    </div>
+
+    <div class="admin-table-wrap" th:if="${not #lists.isEmpty(ensaios)}">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Título</th>
+                    <th>Autor / Filósofo</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="ensaio : ${ensaios}">
+                    <td th:text="${ensaio.id}">1</td>
+                    <td>
+                        <a th:href="@{/ensaios/{id}(id=${ensaio.id})}"
+                           target="_blank"
+                           th:text="${ensaio.titulo}">Título</a>
+                    </td>
+                    <td th:text="${ensaio.autorFilosofo} ?: '—'">Filósofo</td>
+                    <td th:text="${ensaio.dataCriacao != null} ? ${#temporals.format(ensaio.dataCriacao, 'dd/MM/yyyy')} : '—'">Data</td>
+                    <td class="td-acoes">
+                        <a th:href="@{/admin/ensaios/{id}/editar(id=${ensaio.id})}"
+                           class="btn-editar-admin">Editar</a>
+                        <form th:action="@{/admin/ensaios/{id}/deletar(id=${ensaio.id})}"
+                              method="post"
+                              onsubmit="return confirm('Excluir este ensaio?')">
+                            <button type="submit" class="btn-del-admin">Excluir</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="admin-empty" th:if="${#lists.isEmpty(ensaios)}">
+        <p>Nenhum ensaio cadastrado ainda.</p>
+        <a th:href="@{/admin/ensaios/novo}" class="btn-novo-admin">Criar primeiro ensaio</a>
+    </div>
+</main>
+
+</body>
+</html>

@@ -27,13 +27,7 @@
             <div class="ensaio-conteudo" th:text="${ensaio.conteudo}">
                 Conteúdo do ensaio...
             </div>
-            <div class="ensaio-acoes">
-                <a th:href="@{/ensaios/{id}/editar(id=${ensaio.id})}" class="btn-editar">Editar ensaio</a>
-                <form th:action="@{/ensaios/{id}/deletar(id=${ensaio.id})}" method="post"
-                      onsubmit="return confirm('Excluir este ensaio?')">
-                    <button type="submit" class="btn-deletar">Excluir</button>
-                </form>
-            </div>
+
         </div>
     </article>
 

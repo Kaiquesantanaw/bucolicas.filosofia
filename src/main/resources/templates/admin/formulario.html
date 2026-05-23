@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${ensaio.id} ? 'Editar Ensaio — Admin' : 'Novo Ensaio — Admin'">Ensaio</title>
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+</head>
+<body>
+
+<nav class="admin-nav">
+    <span class="admin-brand">⚑ Admin — Bucólicas Filosóficas</span>
+    <div class="admin-nav-right">
+        <a th:href="@{/admin}" class="btn-logout">← Dashboard</a>
+    </div>
+</nav>
+
+<main class="admin-main">
+    <div class="admin-header">
+        <h1 th:text="${ensaio.id} ? 'Editar Ensaio' : 'Novo Ensaio'">Ensaio</h1>
+    </div>
+
+    <form th:action="@{/admin/ensaios/salvar}" th:object="${ensaio}" method="post" class="admin-form">
+        <input type="hidden" th:field="*{id}">
+
+        <div class="form-group">
+            <label for="titulo">Título *</label>
+            <input type="text" id="titulo" th:field="*{titulo}"
+                   placeholder="Título do ensaio" required>
+        </div>
+
+        <div class="form-group">
+            <label for="autorFilosofo">Autor / Filósofo</label>
+            <input type="text" id="autorFilosofo" th:field="*{autorFilosofo}"
+                   placeholder="Nome do filósofo ou autor">
+        </div>
+
+        <div class="form-group">
+            <label for="conteudo">Conteúdo *</label>
+            <textarea id="conteudo" th:field="*{conteudo}"
+                      rows="18" placeholder="Escreva o ensaio aqui..." required></textarea>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" class="btn-entrar">Salvar</button>
+            <a th:href="@{/admin}" class="btn-voltar-site">Cancelar</a>
+        </div>
+    </form>
+</main>
+
+</body>
+</html>
