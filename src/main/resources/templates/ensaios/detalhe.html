@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${ensaio.titulo} + ' — Bucólicas Filosóficas'">Ensaio</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header th:replace="~{fragments/layout :: cabecalho}"></header>
+
+<main>
+    <article class="ensaio-detalhe" th:if="${ensaio}">
+        <div class="container">
+            <a th:href="@{/ensaios}" class="btn-voltar">← Voltar aos ensaios</a>
+            <h1 th:text="${ensaio.titulo}">Título do Ensaio</h1>
+            <div class="ensaio-meta">
+                <span th:if="${ensaio.autorFilosofo}">
+                    Por <strong th:text="${ensaio.autorFilosofo}">Filósofo</strong>
+                </span>
+                <span th:if="${ensaio.dataCriacao}"
+                      th:text="${#temporals.format(ensaio.dataCriacao, 'dd \'de\' MMMM \'de\' yyyy', new java.util.Locale('pt', 'BR'))}">
+                    Data
+                </span>
+            </div>
+            <div class="ensaio-conteudo" th:text="${ensaio.conteudo}">
+                Conteúdo do ensaio...
+            </div>
+            <div class="ensaio-acoes">
+                <a th:href="@{/ensaios/{id}/editar(id=${ensaio.id})}" class="btn-editar">Editar ensaio</a>
+                <form th:action="@{/ensaios/{id}/deletar(id=${ensaio.id})}" method="post"
+                      onsubmit="return confirm('Excluir este ensaio?')">
+                    <button type="submit" class="btn-deletar">Excluir</button>
+                </form>
+            </div>
+        </div>
+    </article>
+
+    <div class="container" th:unless="${ensaio}">
+        <p>Ensaio não encontrado.</p>
+        <a th:href="@{/ensaios}">← Voltar</a>
+    </div>
+</main>
+
+<footer th:replace="~{fragments/layout :: rodape}"></footer>
+
+</body>
+</html>

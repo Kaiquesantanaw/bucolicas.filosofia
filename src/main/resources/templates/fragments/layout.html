@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${pageTitle} ?: 'Bucólicas Filosóficas'">Bucólicas Filosóficas</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header th:fragment="cabecalho">
+    <nav class="navbar">
+        <a class="brand" th:href="@{/}">Bucólicas Filosóficas</a>
+        <ul class="nav-links">
+            <li><a th:href="@{/}">Início</a></li>
+            <li><a th:href="@{/ensaios}">Ensaios</a></li>
+            <li><a th:href="@{/ensaios/novo}" class="btn-novo">+ Novo Ensaio</a></li>
+        </ul>
+    </nav>
+</header>
+
+<footer th:fragment="rodape">
+    <div class="footer-content">
+        <p>"A filosofia é o amor pela sabedoria." — Pitágoras</p>
+        <p class="footer-sub">&copy; 2026 Bucólicas Filosóficas</p>
+    </div>
+</footer>
+
+</body>
+</html>
