@@ -36,6 +36,8 @@ public class DatabaseUrlPostProcessor implements EnvironmentPostProcessor {
         }
 
         environment.getPropertySources().addFirst(
-                new MapPropertySource("databaseUrlNormalized", Map.of("spring.datasource.url", jdbcUrl)));
+                new MapPropertySource("databaseUrlNormalized", Map.of(
+                        "spring.datasource.url", jdbcUrl,
+                        "DATABASE_URL", jdbcUrl)));
     }
 }
