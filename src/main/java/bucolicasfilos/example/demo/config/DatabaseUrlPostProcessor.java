@@ -35,6 +35,11 @@ public class DatabaseUrlPostProcessor implements EnvironmentPostProcessor {
             jdbcUrl = rawUrl; // formato desconhecido, mantém como está
         }
 
+        // Render exige sslmode=require; adiciona se ainda não estiver presente
+        if (!jdbcUrl.contains("sslmode") && !jdbcUrl.contains("ssl=")) {
+            jdbcUrl += (jdbcUrl.contains("?") ? "&" : "?") + "sslmode=require";
+        }
+
         environment.getPropertySources().addFirst(
                 new MapPropertySource("databaseUrlNormalized", Map.of(
                         "spring.datasource.url", jdbcUrl,
